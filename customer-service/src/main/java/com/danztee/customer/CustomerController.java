@@ -19,6 +19,5 @@ public class CustomerController {
         log.info("New customer request: {}", customerRegistrationRequest);
 
         customerService.register(customerRegistrationRequest);
-
     }
 }

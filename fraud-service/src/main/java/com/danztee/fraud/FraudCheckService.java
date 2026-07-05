@@ -18,6 +18,8 @@ public class FraudCheckService {
 
     public boolean isFraudulentCustomer(Integer customerId) {
 
+        System.out.println(LocalDateTime.now() + "helllo");
+
         fraudCheckHistoryRepository.save(
                 FraudCheckHistory.builder()
                         .isFraudster(false)
