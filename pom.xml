@@ -12,6 +12,7 @@
     <url>https://www.danielolowoniyi.com</url>
     <modules>
         <module>customer-service</module>
+        <module>fraud-service</module>
     </modules>
 
     <properties>
