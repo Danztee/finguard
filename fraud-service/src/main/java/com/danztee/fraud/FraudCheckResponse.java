@@ -1,4 +1,4 @@
 package com.danztee.fraud;
 
-public record FraudCheckResponse() {
+public record FraudCheckResponse(boolean isFraudster) {
 }
