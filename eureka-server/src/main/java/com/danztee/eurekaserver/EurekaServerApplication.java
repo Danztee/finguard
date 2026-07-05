@@ -1,11 +1,13 @@
-package com.danztee.customer;
+package com.danztee.eurekaserver;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 
 @SpringBootApplication
-public class CustomerApplication {
+@EnableEurekaServer
+public class EurekaServerApplication {
     public static void main(String[] args) {
-        SpringApplication.run(CustomerApplication.class, args);
+        SpringApplication.run(EurekaServerApplication.class, args);
     }
 }

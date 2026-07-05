@@ -13,6 +13,7 @@
     <modules>
         <module>customer-service</module>
         <module>fraud-service</module>
+        <module>eureka-server</module>
     </modules>
 
     <properties>
@@ -20,7 +21,7 @@
         <maven.compiler.release>17</maven.compiler.release>
         <spring.boot.maven.plugin.version>4.1.0</spring.boot.maven.plugin.version>
         <spring.boot.maven.dependencies.version>4.1.0</spring.boot.maven.dependencies.version>
-
+        <spring-cloud.version>2025.1.2</spring-cloud.version>
     </properties>
 
     <dependencyManagement>
@@ -33,7 +34,18 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpclient</artifactId>
+                <version>4.5.14</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
