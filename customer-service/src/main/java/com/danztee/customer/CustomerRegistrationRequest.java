@@ -1,4 +1,4 @@
 package com.danztee.customer;
 
-public record CustomerRegistrationRequest() {
+public record CustomerRegistrationRequest(String firstName, String lastName, String email) {
 }
