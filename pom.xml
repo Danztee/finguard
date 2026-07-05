@@ -6,9 +6,13 @@
     <groupId>com.danztee</groupId>
     <artifactId>finguard</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
 
     <name>finguard</name>
     <url>https://www.danielolowoniyi.com</url>
+    <modules>
+        <module>customer-service</module>
+    </modules>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
