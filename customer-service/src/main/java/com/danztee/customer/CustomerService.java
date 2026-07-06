@@ -46,7 +46,7 @@ public class CustomerService {
             throw new IllegalStateException("Fraudster");
         }
 
-//        send notification
+//        send notification (todo: make is async later)
         NotificationRequest notificationRequest = new NotificationRequest(
                 customer.getEmail(),
                 customer.getId(),
