@@ -16,12 +16,12 @@ public class RabbitMQConfig {
 
     private final ConnectionFactory connectionFactory;
 
-    @Bean
-    public AmqpTemplate amqpTemplate(MessageConverter messageConverter) {
-        RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
-        rabbitTemplate.setMessageConverter(messageConverter);
-        return rabbitTemplate;
-    }
+//    @Bean
+//    public AmqpTemplate amqpTemplate(MessageConverter messageConverter) {
+//        RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
+//        rabbitTemplate.setMessageConverter(messageConverter);
+//        return rabbitTemplate;
+//    }
 
     @Bean
     public SimpleRabbitListenerContainerFactory simpleRabbitListenerContainerFactory() {
