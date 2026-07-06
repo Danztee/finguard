@@ -1,5 +1,6 @@
 package com.danztee.customer;
 
+import com.danztee.amqp.RabbitMQMessageProducer;
 import com.danztee.clients.fraud.FraudCheckResponse;
 import com.danztee.clients.fraud.FraudClient;
 import com.danztee.clients.fraud.NotificationClient;
@@ -14,6 +15,7 @@ public class CustomerService {
     //    private final RestTemplate restTemplate;
     private final FraudClient fraudClient;
     private final NotificationClient notificationClient;
+    private final RabbitMQMessageProducer rabbitMQMessageProducer;
 
     public void register(CustomerRegistrationRequest request) {
         Customer customer = Customer.builder()
@@ -46,14 +48,20 @@ public class CustomerService {
             throw new IllegalStateException("Fraudster");
         }
 
-//        send notification (todo: make is async later)
+//        send notification (now async)
         NotificationRequest notificationRequest = new NotificationRequest(
                 customer.getEmail(),
                 customer.getId(),
-                String.format("Hi %s! welcome to the platform...",  request.firstName()));
+                String.format("Hi %s! welcome to the platform...", request.firstName()));
 
-        notificationClient.sendNotification(
-                notificationRequest
+
+        rabbitMQMessageProducer.publish(notificationRequest,
+                "internal.exchange",
+                "internal.notification.routing-key"
         );
+
+//        notificationClient.sendNotification(
+//                notificationRequest
+//        );
     }
 }
