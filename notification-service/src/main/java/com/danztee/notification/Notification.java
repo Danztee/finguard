@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Data
 @Builder
 @Entity
@@ -17,4 +19,14 @@ public class Notification {
     @SequenceGenerator(name = "notification_id_sequence", sequenceName = "notification_id_sequence")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "notification_id_sequence")
     private Integer id;
+
+    private String sender;
+
+    private String toCustomerEmail;
+
+    private String toCustomerId;
+
+    private String message;
+
+    private LocalDateTime sentAt;
 }
