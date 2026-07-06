@@ -1,4 +1,4 @@
-package com.danztee;
+package com.danztee.notification;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

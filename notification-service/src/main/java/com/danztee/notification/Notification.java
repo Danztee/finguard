@@ -1,4 +1,4 @@
-package com.danztee;
+package com.danztee.notification;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -22,9 +22,9 @@ public class Notification {
 
     private String sender;
 
-    private String toCustomerEmail;
+    private String customerEmail;
 
-    private String toCustomerId;
+    private Integer customerId;
 
     private String message;
 

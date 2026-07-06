@@ -1,18 +1,26 @@
-package com.danztee;
+package com.danztee.notification;
 
 import com.danztee.clients.fraud.NotificationRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @Service
 public class NotificationService {
     private NotificationRepository notificationRepository;
 
-    void send(NotificationRequest notificationRequest) {
+    public void send(NotificationRequest notificationRequest) {
 
-        notificationRepository.save(
-                Notification.builder().build()
-        )
+        Notification notification = Notification.builder()
+                .customerId(notificationRequest.customerId())
+                .customerEmail(notificationRequest.customerEmail())
+                .sender("Danztee")
+                .message(notificationRequest.message())
+                .sentAt(LocalDateTime.now())
+                .build();
+
+        notificationRepository.save(notification);
     }
 }

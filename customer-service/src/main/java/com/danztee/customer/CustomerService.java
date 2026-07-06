@@ -2,6 +2,8 @@ package com.danztee.customer;
 
 import com.danztee.clients.fraud.FraudCheckResponse;
 import com.danztee.clients.fraud.FraudClient;
+import com.danztee.clients.fraud.NotificationClient;
+import com.danztee.clients.fraud.NotificationRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +13,7 @@ public class CustomerService {
     private final CustomerRepository customerRepository;
     //    private final RestTemplate restTemplate;
     private final FraudClient fraudClient;
+    private final NotificationClient notificationClient;
 
     public void register(CustomerRegistrationRequest request) {
         Customer customer = Customer.builder()
@@ -44,5 +47,13 @@ public class CustomerService {
         }
 
 //        send notification
+        NotificationRequest notificationRequest = new NotificationRequest(
+                customer.getEmail(),
+                customer.getId(),
+                String.format("Hi %s! welcome to the platform...",  request.firstName()));
+
+        notificationClient.sendNotification(
+                notificationRequest
+        );
     }
 }
