@@ -50,6 +50,76 @@ services:
       - finguard-net
     restart: unless-stopped
 
+  eureka-server:
+    image: danztee/eureka-server:latest
+    container_name: eureka-server
+    ports:
+      - "8761:8761"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    networks:
+      - finguard-net
+    depends_on:
+      - zipkin
+    restart: unless-stopped
+
+  api-gateway:
+    image: danztee/api-gateway:latest
+    container_name: api-gateway
+    ports:
+      - "8083:8083"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    networks:
+      - finguard-net
+    depends_on:
+      - zipkin
+      - eureka-server
+    restart: unless-stopped
+
+  customer-service:
+    image: danztee/customer-service:latest
+    container_name: customer-service
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    networks:
+      - finguard-net
+    depends_on:
+      - eureka-server
+      - postgres
+      - rabbitmq
+    restart: unless-stopped
+
+  fraud-service:
+    image: danztee/fraud-service:latest
+    container_name: fraud-service
+    ports:
+      - "8081:8081"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    networks:
+      - finguard-net
+    depends_on:
+      - eureka-server
+      - postgres
+    restart: unless-stopped
+
+  notification-service:
+    image: danztee/notification-service:latest
+    container_name: notification-service
+    ports:
+      - "8082:8082"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    networks:
+      - finguard-net
+    depends_on:
+      - eureka-server
+      - rabbitmq
+    restart: unless-stopped
+
 volumes:
   postgres_data:
   pgadmin_data:

@@ -26,6 +26,7 @@
         <spring.boot.maven.plugin.version>4.1.0</spring.boot.maven.plugin.version>
         <spring.boot.maven.dependencies.version>4.1.0</spring.boot.maven.dependencies.version>
         <spring-cloud.version>2025.1.2</spring-cloud.version>
+        <image>danztee/${project.artifactId}:${project.version}</image>
     </properties>
 
     <dependencyManagement>
@@ -82,6 +83,33 @@
                             </goals>
                         </execution>
                     </executions>
+                </plugin>
+                <plugin>
+                    <groupId>com.google.cloud.tools</groupId>
+                    <artifactId>jib-maven-plugin</artifactId>
+                    <version>3.5.1</version>
+                    <configuration>
+                        <from>
+                            <image>
+                                eclipse-temurin:17@sha256:68868d04fa9cfd5f5c6abec0b5cef86d8de2bf9c62c37c7d3e4f0f80f5cfd7ff
+                            </image>
+                            <platforms>
+                                <platform>
+                                    <architecture>arm64</architecture>
+                                    <os>linux</os>
+                                </platform>
+                                <platform>
+                                    <architecture>amd64</architecture>
+                                    <os>linux</os>
+                                </platform>
+                            </platforms>
+                        </from>
+                        <to>
+                            <tags>
+                                <tag>latest</tag>
+                            </tags>
+                        </to>
+                    </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>
