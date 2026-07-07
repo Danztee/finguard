@@ -18,6 +18,11 @@ spring:
         format_sql: 'true'
   rabbitmq:
     addresses: localhost:5672
+    template:
+      observation-enabled: true
+    listener:
+      simple:
+        observation-enabled: true
 
 management:
   tracing:

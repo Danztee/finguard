@@ -28,7 +28,6 @@ public class RabbitMQConfig {
         SimpleRabbitListenerContainerFactory factory = new SimpleRabbitListenerContainerFactory();
         factory.setConnectionFactory(connectionFactory);
         factory.setMessageConverter(new JacksonJsonMessageConverter());
-
         return factory;
     }
 
