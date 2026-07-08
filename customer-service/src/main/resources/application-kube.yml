@@ -1,12 +1,12 @@
 server:
-  port: 8081
+  port: 8080
 
 spring:
   application:
-    name: fraud-service
+    name: customer-service
   datasource:
     username: 'danztee'
-    url: jdbc:postgresql://postgres:5432/fraud
+    url: jdbc:postgresql://postgres:5432/customer
     password: 'password'
   jpa:
     hibernate:
@@ -16,6 +16,13 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: 'true'
+  rabbitmq:
+    addresses: rabbitmq:5672
+    template:
+      observation-enabled: true
+    listener:
+      simple:
+        observation-enabled: true
 
 management:
   tracing:
@@ -27,6 +34,8 @@ management:
 
 eureka:
   client:
+    service-url:
+      defaultZone: http://eureka-server:8761/eureka
+    fetch-registry: true
+    register-with-eureka: true
     enabled: false
-    register-with-eureka: false
-    fetch-registry: false

@@ -77,48 +77,45 @@ services:
 #      - eureka-server
 #    restart: unless-stopped
 
-#  customer-service:
-#    image: danztee/customer-service:latest
-#    container_name: customer-service
-#    ports:
-#      - "8080:8080"
-#    environment:
-#      - SPRING_PROFILES_ACTIVE=docker
-#    networks:
-#      - finguard-net
-#    depends_on:
-#      - eureka-server
-#      - postgres
-#      - rabbitmq
-#    restart: unless-stopped
-#
-#  fraud-service:
-#    image: danztee/fraud-service:latest
-#    container_name: fraud-service
-#    ports:
-#      - "8081:8081"
-#    environment:
-#      - SPRING_PROFILES_ACTIVE=docker
-#    networks:
-#      - finguard-net
-#    depends_on:
-#      - eureka-server
-#      - postgres
-#    restart: unless-stopped
-#
-#  notification-service:
-#    image: danztee/notification-service:latest
-#    container_name: notification-service
-#    ports:
-#      - "8082:8082"
-#    environment:
-#      - SPRING_PROFILES_ACTIVE=docker
-#    networks:
-#      - finguard-net
-#    depends_on:
-#      - eureka-server
-#      - rabbitmq
-#    restart: unless-stopped
+  customer-service:
+    image: danztee/customer-service:latest
+    container_name: customer-service
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    networks:
+      - finguard-net
+    depends_on:
+      - postgres
+      - rabbitmq
+    restart: unless-stopped
+
+  fraud-service:
+    image: danztee/fraud-service:latest
+    container_name: fraud-service
+    ports:
+      - "8081:8081"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    networks:
+      - finguard-net
+    depends_on:
+      - postgres
+    restart: unless-stopped
+
+  notification-service:
+    image: danztee/notification-service:latest
+    container_name: notification-service
+    ports:
+      - "8082:8082"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    networks:
+      - finguard-net
+    depends_on:
+      - rabbitmq
+    restart: unless-stopped
 
 volumes:
   postgres_data:
