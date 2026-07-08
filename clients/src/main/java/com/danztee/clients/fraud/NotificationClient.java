@@ -3,7 +3,7 @@ package com.danztee.clients.fraud;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 
-@FeignClient("notification-service")
+@FeignClient(name = "notification-service", url = "${clients.notification-service.url}")
 public interface NotificationClient {
 
     @PostMapping("/api/v1/notification")
